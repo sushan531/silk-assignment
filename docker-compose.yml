@@ -1,0 +1,29 @@
+version: '3'
+services:
+  fetcher:
+    build:
+      context: ./fetcher
+      dockerfile: Dockerfile
+    ports:
+      - 5555:5555
+    tty: true
+    depends_on:
+      normalizer:
+        condition: service_started
+    command: [ "python", "main.py" ]
+
+  normalizer:
+    build:
+      context: ./normalizer
+      dockerfile: Dockerfile
+    tty: true
+    depends_on:
+      db:
+        condition: service_started
+    command: [ "python", "main.py" ]
+
+  db:
+    image: mongo:latest
+    hostname: test_mongodb
+    ports:
+      - 27017:27017

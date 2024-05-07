@@ -1,0 +1,6 @@
+- source:
+    name: "qualys"
+    url: "https://api.recruiting.app.silk.security/api/qualys/hosts/get"
+- source:
+    name: "crowdstrike"
+    url: "https://api.recruiting.app.silk.security/api/crowdstrike/hosts/get"
